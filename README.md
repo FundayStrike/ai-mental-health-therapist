@@ -4,6 +4,7 @@ A small personal project that I made to test out the application of generative A
 > Note: This is a small experimental side project, and not meant to act as a replacement for a human mental health therapist!
 
 ### Future Plans
-- Beautify the webpage
-- Add more context (e.g. age of user) for greater effectiveness
-- Local storage of text history
+- Improve UI/UX design.
+- Add more context (e.g. age of user) for more personalised responses
+- Store conversation history locally
+- Add security measures to ensure privacy of user

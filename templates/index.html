@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MindBot</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}"/>
+	</head>
+	<body>
+		<div id="website-header">
+			<h1>MindBot</h1>
+			<h3>Always ready to lend you a listening ear whenever possible!</h3>
+		</div>
+		<form method="post">
+			<textarea placeholder="Voice out your concerns here..." rows='6' cols='100' id="content" name="content"></textarea>
+		</form>
+		<div id="text-content">
+			{% if output %}
+				<p>MindBot says: {{output}}</p>
+			{% endif %}
+		</div>
+		<script>
+			// enter to submit text, shift + enter to add new line
+			document.getElementById("content").addEventListener("keydown", function (e){
+				if (e.key == "Enter" && !e.shiftKey){
+					e.preventDefault();
+					this.form.submit();
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -3,6 +3,7 @@
 	<head>
 		<title>MindBot</title>
 		<link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.7/purify.min.js"></script>
 	</head>
 	<body>
 		<div id="website-header">
@@ -12,11 +13,7 @@
 		<form method="post">
 			<textarea placeholder="Voice out your concerns here..." rows='6' cols='100' id="content" name="content"></textarea>
 		</form>
-		<div id="text-content">
-			{% if output %}
-				<p>MindBot says: {{output}}</p>
-			{% endif %}
-		</div>
+		<div id="text-content"></div>
 		<script>
 			// enter to submit text, shift + enter to add new line
 			document.getElementById("content").addEventListener("keydown", function (e){
@@ -26,5 +23,12 @@
 				}
 			})
 		</script>
+		{% if output %}
+			<script>
+				// prevent prompt injection
+				const output = DOMPurify.sanitize({{output | tojson}});
+				document.getElementById("text-content").innerHTML = output;
+			</script>
+		{% endif %}
 	</body>
 </html>
